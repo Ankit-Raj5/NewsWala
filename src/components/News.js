@@ -3,6 +3,7 @@ import NewsItem from './NewsItem';
 
 export class News extends Component {
   
+
   constructor(){
     super();
     this.state = {
@@ -13,7 +14,7 @@ export class News extends Component {
   }
 
   async componentDidMount(){
-    let url = "https://newsapi.org/v2/everything?q=ndtv&from=2024-07-26&sortBy=publishedAt&apiKey=7e1529fc8dc649f1a45e0e232befec59&pageSize=51";
+    let url = "https://newsapi.org/v2/everything?q=times%20of%20india&sortBy=publishedAt&apiKey=7e1529fc8dc649f1a45e0e232befec59&pageSize=21";
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({
@@ -21,9 +22,9 @@ export class News extends Component {
       totalResults: parsedData.totalResults
     });
   }
-
+  
   handleNextClick = async ()=>{
-    let url = `https://newsapi.org/v2/everything?q=ndtv&from=2024-07-26&sortBy=publishedAt&apiKey=7e1529fc8dc649f1a45e0e232befec59&page=${this.state.page+1}&pageSize=51`;
+    let url = `https://newsapi.org/v2/everything?q=times%20of%20india&sortBy=publishedAt&apiKey=7e1529fc8dc649f1a45e0e232befec59&page=${this.state.page+1}&pageSize=21`;
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({
@@ -33,7 +34,7 @@ export class News extends Component {
   }
 
   handlePrevClick = async ()=>{
-    let url = `https://newsapi.org/v2/everything?q=ndtv&from=2024-07-26&sortBy=publishedAt&apiKey=7e1529fc8dc649f1a45e0e232befec59&page=${this.state.page-1}&pageSize=51`;
+    let url = `https://newsapi.org/v2/everything?q=times%20of%20india&sortBy=publishedAt&apiKey=7e1529fc8dc649f1a45e0e232befec59&page=${this.state.page-1}&pageSize=21`;
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({
@@ -57,8 +58,8 @@ export class News extends Component {
           })}
 
           <div className="container d-flex justify-content-between">
-            <button disabled={this.state.page <=1} type="button" class="btn btn-dark" onClick={this.handlePrevClick}>&larr; previous</button>
-            <button type="button" class="btn btn-dark" onClick={this.handleNextClick}>next &rarr;</button>
+            <button disabled={this.state.page <=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}>&larr; previous</button>
+            <button type="button" className="btn btn-dark" onClick={this.handleNextClick}>next &rarr;</button>
           </div>
         </div>
       </div>
